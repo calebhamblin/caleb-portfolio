@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caleb's Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      padding: 2rem;
+      max-width: 700px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+    }
+    .question {
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background-color: #fff;
+      border-radius: 8px;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #result {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+    <h1>How Well Do You Know Caleb?</h1>
+  
+    <div class="question">
+      <p><strong>1. What city was Caleb born in?</strong></p>
+      <input type="radio" name="q1" value="a" /> Nampa<br />
+      <input type="radio" name="q1" value="b" /> Meridian<br />
+      <input type="radio" name="q1" value="c" /> Boise<br />
+      <input type="radio" name="q1" value="d" /> Caldwell<br />
+    </div>
+  
+    <div class="question">
+      <p><strong>2. What was Caleb's favorite track event?</strong></p>
+      <input type="radio" name="q2" value="a" /> 1600m<br />
+      <input type="radio" name="q2" value="b" /> 3200m<br />
+      <input type="radio" name="q2" value="c" /> 800m<br />
+      <input type="radio" name="q2" value="d" /> 4x400m<br />
+    </div>
+  
+    <div class="question">
+      <p><strong>3. How many siblings does Caleb have?</strong></p>
+      <input type="radio" name="q3" value="a" /> 4<br />
+      <input type="radio" name="q3" value="b" /> 5<br />
+      <input type="radio" name="q3" value="c" /> 6<br />
+      <input type="radio" name="q3" value="d" /> 7<br />
+    </div>
+  
+    <div class="question">
+      <p><strong>4. What is Caleb studying right now?</strong></p>
+      <input type="radio" name="q4" value="a" /> Mechanical Engineering<br />
+      <input type="radio" name="q4" value="b" /> Exercise Science<br />
+      <input type="radio" name="q4" value="c" /> Accounting<br />
+      <input type="radio" name="q4" value="d" /> Finance<br />
+    </div>
+  
+    <div class="question">
+      <p><strong>5. Where did Caleb complete the Ironman 70.3?</strong></p>
+      <input type="radio" name="q5" value="a" /> Hawaii<br />
+      <input type="radio" name="q5" value="b" /> Boise<br />
+      <input type="radio" name="q5" value="c" /> Long Beach<br />
+      <input type="radio" name="q5" value="d" /> St. George<br />
+    </div>
+  
+    <div style="text-align: center;">
+      <button onclick="gradeQuiz()">Submit Quiz</button>
+    </div>
+  
+    <div id="result"></div>
+  
+    <script>
+      function gradeQuiz() {
+        let score = 0;
+  
+        const answers = {
+          q1: 'a', // Nampa
+          q2: 'a', // 1600m
+          q3: 'b', // 5
+          q4: 'c', // Accounting
+          q5: 'd'  // St. George
+        };
+  
+        for (let q in answers) {
+          const selected = document.querySelector(`input[name="${q}"]:checked`);
+          if (selected && selected.value === answers[q]) {
+            score++;
+          }
+        }
+  
+        document.getElementById('result').textContent =
+          `You got ${score} out of 5 correct!`;
+      }
+    </script>
+    <p style="text-align: center; margin-top: 2rem;">
+        <a href="scratch.html">← Back to Scratch Page</a>
+      </p>
+      
+  </body>
+  
+</html>
