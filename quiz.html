@@ -36,84 +36,201 @@
       margin-top: 2rem;
       text-align: center;
     }
+    #game {
+      display: none;
+      margin-top: 2rem;
+      text-align: center;
+    }
+    canvas {
+      border: 1px solid black;
+    }
   </style>
 </head>
 <body>
-    <h1>How Well Do You Know Caleb?</h1>
+  <h1>How Well Do You Know Caleb?</h1>
   
-    <div class="question">
-      <p><strong>1. What city was Caleb born in?</strong></p>
-      <input type="radio" name="q1" value="a" /> Nampa<br />
-      <input type="radio" name="q1" value="b" /> Meridian<br />
-      <input type="radio" name="q1" value="c" /> Boise<br />
-      <input type="radio" name="q1" value="d" /> Caldwell<br />
-    </div>
+  <div class="question">
+    <p><strong>1. What city was Caleb born in?</strong></p>
+    <input type="radio" name="q1" value="a" /> Nampa<br />
+    <input type="radio" name="q1" value="b" /> Meridian<br />
+    <input type="radio" name="q1" value="c" /> Boise<br />
+    <input type="radio" name="q1" value="d" /> Caldwell<br />
+  </div>
   
-    <div class="question">
-      <p><strong>2. What was Caleb's favorite track event?</strong></p>
-      <input type="radio" name="q2" value="a" /> 1600m<br />
-      <input type="radio" name="q2" value="b" /> 3200m<br />
-      <input type="radio" name="q2" value="c" /> 800m<br />
-      <input type="radio" name="q2" value="d" /> 4x400m<br />
-    </div>
+  <div class="question">
+    <p><strong>2. What was Caleb's favorite track event?</strong></p>
+    <input type="radio" name="q2" value="a" /> 1600m<br />
+    <input type="radio" name="q2" value="b" /> 3200m<br />
+    <input type="radio" name="q2" value="c" /> 800m<br />
+    <input type="radio" name="q2" value="d" /> 4x400m<br />
+  </div>
   
-    <div class="question">
-      <p><strong>3. How many siblings does Caleb have?</strong></p>
-      <input type="radio" name="q3" value="a" /> 4<br />
-      <input type="radio" name="q3" value="b" /> 5<br />
-      <input type="radio" name="q3" value="c" /> 6<br />
-      <input type="radio" name="q3" value="d" /> 7<br />
-    </div>
+  <div class="question">
+    <p><strong>3. How many siblings does Caleb have?</strong></p>
+    <input type="radio" name="q3" value="a" /> 4<br />
+    <input type="radio" name="q3" value="b" /> 5<br />
+    <input type="radio" name="q3" value="c" /> 6<br />
+    <input type="radio" name="q3" value="d" /> 7<br />
+  </div>
   
-    <div class="question">
-      <p><strong>4. What is Caleb studying right now?</strong></p>
-      <input type="radio" name="q4" value="a" /> Mechanical Engineering<br />
-      <input type="radio" name="q4" value="b" /> Exercise Science<br />
-      <input type="radio" name="q4" value="c" /> Accounting<br />
-      <input type="radio" name="q4" value="d" /> Finance<br />
-    </div>
+  <div class="question">
+    <p><strong>4. What is Caleb studying right now?</strong></p>
+    <input type="radio" name="q4" value="a" /> Mechanical Engineering<br />
+    <input type="radio" name="q4" value="b" /> Exercise Science<br />
+    <input type="radio" name="q4" value="c" /> Accounting<br />
+    <input type="radio" name="q4" value="d" /> Finance<br />
+  </div>
   
-    <div class="question">
-      <p><strong>5. Where did Caleb complete the Ironman 70.3?</strong></p>
-      <input type="radio" name="q5" value="a" /> Hawaii<br />
-      <input type="radio" name="q5" value="b" /> Boise<br />
-      <input type="radio" name="q5" value="c" /> Long Beach<br />
-      <input type="radio" name="q5" value="d" /> St. George<br />
-    </div>
+  <div class="question">
+    <p><strong>5. Where did Caleb complete the Ironman 70.3?</strong></p>
+    <input type="radio" name="q5" value="a" /> Hawaii<br />
+    <input type="radio" name="q5" value="b" /> Boise<br />
+    <input type="radio" name="q5" value="c" /> Long Beach<br />
+    <input type="radio" name="q5" value="d" /> St. George<br />
+  </div>
   
-    <div style="text-align: center;">
-      <button onclick="gradeQuiz()">Submit Quiz</button>
-    </div>
-  
-    <div id="result"></div>
-  
-    <script>
-      function gradeQuiz() {
-        let score = 0;
-  
-        const answers = {
-          q1: 'a', // Nampa
-          q2: 'a', // 1600m
-          q3: 'b', // 5
-          q4: 'c', // Accounting
-          q5: 'd'  // St. George
-        };
-  
-        for (let q in answers) {
-          const selected = document.querySelector(`input[name="${q}"]:checked`);
-          if (selected && selected.value === answers[q]) {
-            score++;
+  <div style="text-align: center;">
+    <button onclick="gradeQuiz()">Submit Quiz</button>
+  </div>
+   
+  <div id="result"></div>
+
+  <div id="game" style="display: none; margin-top: 2rem; text-align: center;">
+    <h2>You unlocked Snake! 🎉</h2>
+    <canvas id="snakeCanvas" width="400" height="400"></canvas>
+    <p>Use arrow keys to control the snake. Eat the red food to grow!</p>
+  </div>      
+      
+  <script>
+    function gradeQuiz() {
+      let score = 0;
+      const answers = {
+        q1: 'a', // Nampa
+        q2: 'a', // 1600m
+        q3: 'b', // 5
+        q4: 'c', // Accounting
+        q5: 'd'  // St. George
+      };
+      
+      for (let q in answers) {
+        const selected = document.querySelector(`input[name="${q}"]:checked`);
+        if (selected && selected.value === answers[q]) {
+          score++;
+        }
+      }
+      
+      const resultBox = document.getElementById('result');
+      const gameBox = document.getElementById('game');
+      
+      if (score === 5) {
+        resultBox.textContent = `Perfect score! You got all 5 correct! 🎯`;
+        gameBox.style.display = 'block';
+        startSnakeGame();
+      } else {
+        resultBox.textContent = `You got ${score} out of 5 correct.`;
+        gameBox.style.display = 'none';
+        alert("Try again!");
+      }
+    }
+
+    function startSnakeGame() {
+      const canvas = document.getElementById('snakeCanvas');
+      const ctx = canvas.getContext('2d');
+      const gridSize = 20;
+      const tileCount = canvas.width / gridSize;
+
+      let snake = [
+        { x: 10, y: 10 },
+      ];
+      let food = { x: 15, y: 15 };
+      let dx = 0;
+      let dy = 0;
+      let gameSpeed = 100;
+      let gameLoop;
+
+      document.addEventListener('keydown', changeDirection);
+
+      function changeDirection(event) {
+        const LEFT_KEY = 37;
+        const RIGHT_KEY = 39;
+        const UP_KEY = 38;
+        const DOWN_KEY = 40;
+
+        const keyPressed = event.keyCode;
+        const goingUp = dy === -1;
+        const goingDown = dy === 1;
+        const goingRight = dx === 1;
+        const goingLeft = dx === -1;
+
+        if (keyPressed === LEFT_KEY && !goingRight) {
+          dx = -1;
+          dy = 0;
+        }
+        if (keyPressed === UP_KEY && !goingDown) {
+          dx = 0;
+          dy = -1;
+        }
+        if (keyPressed === RIGHT_KEY && !goingLeft) {
+          dx = 1;
+          dy = 0;
+        }
+        if (keyPressed === DOWN_KEY && !goingUp) {
+          dx = 0;
+          dy = 1;
+        }
+      }
+
+      function drawGame() {
+        // Move snake
+        const head = { x: snake[0].x + dx, y: snake[0].y + dy };
+        snake.unshift(head);
+
+        // Check if snake ate food
+        if (head.x === food.x && head.y === food.y) {
+          food = {
+            x: Math.floor(Math.random() * tileCount),
+            y: Math.floor(Math.random() * tileCount),
+          };
+        } else {
+          snake.pop();
+        }
+
+        // Check collision with walls
+        if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) {
+          clearInterval(gameLoop);
+          alert('Game Over! Refresh to play again.');
+          return;
+        }
+
+        // Check collision with self
+        for (let i = 1; i < snake.length; i++) {
+          if (head.x === snake[i].x && head.y === snake[i].y) {
+            clearInterval(gameLoop);
+            alert('Game Over! Refresh to play again.');
+            return;
           }
         }
-  
-        document.getElementById('result').textContent =
-          `You got ${score} out of 5 correct!`;
+
+        // Clear canvas
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Draw snake
+        ctx.fillStyle = 'green';
+        snake.forEach(segment => {
+          ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize - 2, gridSize - 2);
+        });
+
+        // Draw food
+        ctx.fillStyle = 'red';
+        ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize - 2, gridSize - 2);
       }
-    </script>
-    <p style="text-align: center; margin-top: 2rem;">
-        <a href="scratch.html">← Back to Scratch Page</a>
-      </p>
-      
-  </body>
-  
+
+      gameLoop = setInterval(drawGame, gameSpeed);
+    }
+  </script>      
+  <p style="text-align: center; margin-top: 2rem;">
+    <a href="scratch.html">← Back to Scratch Page</a>
+  </p>
+</body>
 </html>
