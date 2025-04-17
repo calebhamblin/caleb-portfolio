@@ -1,0 +1,27 @@
+/* 1. Change global font to Georgia */
+body {
+    font-family: Georgia, serif !important;
+  }
+  
+  /* 2. Change masthead background to biker.jpg */
+  .masthead {
+    background-image: url('biker.jpg') !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  /* 3. Change 'Tell Me More' and circle icon button backgrounds to yellow */
+  .btn-primary,
+  .fa-stack .fa-circle {
+    background-color: #f6c23e !important; /* matches the yellow Start Bootstrap uses */
+    border-color: #f6c23e !important;
+  }
+  
+  /* 4. Hide Twitter, Facebook, LinkedIn icons */
+  .fab.fa-twitter,
+  .fab.fa-facebook-f,
+  .fab.fa-linkedin-in {
+    display: none !important;
+  }
+  
