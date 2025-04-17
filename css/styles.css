@@ -3811,11 +3811,11 @@ textarea.form-control-lg {
   color: var(--bs-navbar-active-color);
 }
 
-.navbar-collapse {
+/* .navbar-collapse {
   flex-basis: 100%;
   flex-grow: 1;
   align-items: center;
-}
+} */
 
 .navbar-toggler {
   padding: var(--bs-navbar-toggler-padding-y) var(--bs-navbar-toggler-padding-x);
@@ -10947,7 +10947,7 @@ header.masthead {
   padding-bottom: 6rem;
   text-align: center;
   color: #fff;
-  background-image: url("../assets/img/header-bg.jpg");
+  background-image: url("../assets/img/team/mountain.jpg");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
